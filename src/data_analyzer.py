@@ -18,7 +18,6 @@ class Analyzes:
         """
         return self.data[column].value_counts().to_dict()
 
-
     def get_sum_tweet_by_category(self ,column:str):
         """
         It is possible to get an array or a result
@@ -59,6 +58,36 @@ class Analyzes:
         total_all = (avg_one + avg_zero) / 2
         return f"avg one:{avg_one} ,avg zero:{avg_zero} ,total all:{total_all}"
 
+    def the_three_longest_tweets(self):
+        df_zero = self.data[self.data["Biased"] == 0]
+        df_one = self.data[self.data["Biased"] == 1]
+
+        dict_0 = {}
+        for tweet in df_zero["Text"]:
+            # dict_0[tweet] = len(tweet)
+            dict_0[len(tweet)] = tweet
+            # print(dict_0.keys())
+            # print(dict_0.values())
+            # print(dict_0)
+        sor_11 = sorted(dict_0.keys(), key=lambda x: x, reverse=True)
+
+        s = [sor_11.[i] for i in range(3)]
+        print(s.)
+
+        dict_1 = {}
+        for tweet in df_one["Text"]:
+            dict_1[tweet] = len(tweet)
+        # print(dict_1.values())
+
+        # sor_1 = sorted(dict_1.keys(), key=lambda x: dict_1.get(x, 0), reverse=True)
+        sor_11 = sorted(dict_1.keys() ,key=lambda x:x ,reverse=True)
+        list_1 = [dict_1[sor_11[i]] for i in range(3)]
+
+        # print(list_1)
+
+
+    def the_ten_most_common_words(self):
+        pass
 
 
 
@@ -67,4 +96,5 @@ if __name__=="__main__":
     analyze = Analyzes()
     # print(analyze.sum_values_in_column_to_dict("Biased"))
     # print(analyze.get_sum_tweet_by_category("Biased"))
-    print(analyze.get_avg_word_in_text("Text"))
+    # print(analyze.get_avg_word_in_text("Text"))
+    print(analyze.the_three_longest_tweets())
