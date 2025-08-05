@@ -62,32 +62,24 @@ class Analyzes:
         df_zero = self.data[self.data["Biased"] == 0]
         df_one = self.data[self.data["Biased"] == 1]
 
-        dict_0 = {}
+        dict_zero = {}
         for tweet in df_zero["Text"]:
-            # dict_0[tweet] = len(tweet)
-            dict_0[len(tweet)] = tweet
-            # print(dict_0.keys())
-            # print(dict_0.values())
-            # print(dict_0)
-        sor_11 = sorted(dict_0.keys(), key=lambda x: x, reverse=True)
+            dict_zero[tweet] = len(tweet)
+        top_tree_zero = sorted(dict_zero.items() ,key=lambda item: item[1] ,reverse=True)[:3]
+        tweets_only_zero = [item[0] for item in top_tree_zero]
 
-        s = [sor_11.[i] for i in range(3)]
-        print(s.)
 
-        dict_1 = {}
+        dict_one = {}
         for tweet in df_one["Text"]:
-            dict_1[tweet] = len(tweet)
-        # print(dict_1.values())
+            dict_one[tweet] = len(tweet)
+        top_tree_one = sorted(dict_one.items() ,key=lambda item: item[1] ,reverse=True)[:3]
+        tweets_only_one = [item[0] for item in top_tree_one]
 
-        # sor_1 = sorted(dict_1.keys(), key=lambda x: dict_1.get(x, 0), reverse=True)
-        sor_11 = sorted(dict_1.keys() ,key=lambda x:x ,reverse=True)
-        list_1 = [dict_1[sor_11[i]] for i in range(3)]
-
-        # print(list_1)
-
+        return f"the_three_longest_tweets in 1: {tweets_only_one} \nthe_three_longest_tweets in 0: {tweets_only_zero} "
 
     def the_ten_most_common_words(self):
         pass
+
 
 
 
